@@ -1,0 +1,17 @@
+fastapi==0.95.2
+pydantic==1.10.12
+uvicorn[standard]==0.23.2
+
+# Core MS-2D-TAN dependencies (matching authors' environment)
+torch==1.4.0
+torchvision==0.5.0
+torchtext==0.6.0
+easydict==1.9
+terminaltables==3.1.10
+tqdm==4.66.2
+h5py==2.10.0
+numpy==1.18.5
+scipy==1.4.1
+scikit-learn==0.24.2
+nltk==3.7
+opencv-python==4.5.5.64

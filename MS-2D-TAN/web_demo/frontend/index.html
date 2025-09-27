@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS-2D-TAN Web Demo</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header class="layout__header">
+        <h1>MS-2D-TAN Moment Localization Demo</h1>
+        <p class="layout__subtitle">Interactively localize video moments with natural language using the released checkpoints.</p>
+    </header>
+
+    <main class="layout__main">
+        <section class="panel panel--form">
+            <h2>1. Configure</h2>
+            <label for="dataset-select">Dataset &amp; checkpoint</label>
+            <select id="dataset-select"></select>
+            <p id="dataset-summary" class="panel__hint"></p>
+
+            <label for="video-select">Video ID</label>
+            <div class="video-selector">
+                <select id="video-select"></select>
+                <button id="refresh-videos" title="Load more videos">↻</button>
+            </div>
+            <p id="video-duration" class="panel__hint"></p>
+
+            <label for="description-input">Query sentence</label>
+            <textarea id="description-input" rows="3" placeholder="Describe the moment you want to find..."></textarea>
+            <div class="panel__hint" id="examples-container"></div>
+
+            <div class="panel__row">
+                <label for="topk-input">Top-K proposals</label>
+                <input type="number" id="topk-input" min="1" max="10" value="5">
+            </div>
+            <div class="panel__row">
+                <label for="nms-input">NMS IoU threshold</label>
+                <input type="number" id="nms-input" min="0" max="1" step="0.05" placeholder="default">
+            </div>
+
+            <button id="submit-button" class="primary">Run Localization</button>
+            <p id="status-message" class="panel__status"></p>
+        </section>
+
+        <section class="panel panel--results">
+            <h2>2. Results</h2>
+            <div class="results-meta" id="results-meta"></div>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Start (s)</th>
+                        <th>End (s)</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="layout__footer">
+        <span>Need the datasets or checkpoints? Refer to the WEB_DEMO_GUIDE.md file in the repository root.</span>
+    </footer>
+
+    <script src="assets/app.js" type="module"></script>
+</body>
+</html>
