@@ -90,7 +90,9 @@ class DatasetRuntime:
             )
         model_class = getattr(models, self.cfg.MODEL.NAME)
         model = model_class(self.cfg.MODEL)
-        checkpoint = torch.load(checkpoint_path, map_location=self.device)
+        # torch 1.4.0 does not fully support pathlib.Path in torch.load;
+        # convert to string path to avoid 'PosixPath' object has no attribute 'tell'.
+        checkpoint = torch.load(str(checkpoint_path), map_location=self.device)
         if isinstance(checkpoint, dict):
             for key in ('state_dict', 'model', 'module'):
                 if key in checkpoint:
